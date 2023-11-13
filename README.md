@@ -1,6 +1,13 @@
 # Space images telegram bot
 Simple set of scripts for a telegram bot to download space images form different sources and send them to a telegram bot.
 
+### Environment variables
+- NASA_API_KEY
+- TELEGRAM_BOT_TOKEN
+
+1. Put `.env` file near `main.py`.
+2. `.env` contains text data without quotes.
+
 ## Image downloading
 
 Can be done by launching
@@ -29,6 +36,10 @@ To get latest launch:
 ```commandline
 python3 fetch_spacex_images.py 
 ```
+
+## NASA images
+
+To get images from NASA, need to have NASA api key
 
 ### get_nasa_apod.py
 
@@ -63,6 +74,8 @@ python3 get_nasa_epic.py --count 2
 ```
 
 ## Telegram bot
+
+To use bot, need to have Telegram bot api token (TELEGRAM_BOT_TOKEN).
 
 ### telegram_bot.py
 
