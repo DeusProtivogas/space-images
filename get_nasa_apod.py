@@ -39,7 +39,7 @@ if __name__ == "__main__":
     load_dotenv()
     api_key = os.environ["NASA_API_KEY"]
     parser = argparse.ArgumentParser(description='Download NASA APOD images: ')
-    parser.add_argument('--count', help='Number of images')
+    parser.add_argument('-c', '--count', help='Number of images')
     args = parser.parse_args()
     # print(args.id)
 

@@ -26,7 +26,7 @@ def fetch_spacex_launch(path, id):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Download SpaceX images: ')
-    parser.add_argument('--id', help='Launch id')
+    parser.add_argument('-i', '--id', help='Launch id')
     args = parser.parse_args()
     # print(args.id)
 
