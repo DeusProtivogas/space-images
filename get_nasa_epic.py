@@ -12,17 +12,18 @@ def get_nasa_epic(path, api_key, count=2):
     today_date = datetime.date.today()
     yesterday_date = today_date - datetime.timedelta(days=3)
 
-    url_epic = f"https://api.nasa.gov/EPIC/api/natural/date/{yesterday_date.strftime('%Y-%m-%d')}"
-    # print(url_epic)
+    url_epic = f"https://api.nasa.gov/EPIC/api/natural/" \
+               f"date/{yesterday_date.strftime('%Y-%m-%d')}"
     response = requests.get(url_epic, params=params)
     response.raise_for_status()
 
-    images = []
     for index, item in enumerate(response.json()):
         if index >= int(count):
             break
         id = item.get("identifier")
-        url_image = f"https://api.nasa.gov/EPIC/archive/natural/{yesterday_date.strftime('%Y/%m/%d')}/png/epic_1b_{id}.png"
+        url_image = f"https://api.nasa.gov/EPIC/archive/natural" \
+                    f"/{yesterday_date.strftime('%Y/%m/%d')}/" \
+                    f"png/epic_1b_{id}.png"
 
         response_image = requests.get(url_image, params=params)
         response_image.raise_for_status()
@@ -38,7 +39,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Download NASA EPIC images: ')
     parser.add_argument('-c', '--count', help='Number of images')
     args = parser.parse_args()
-    # print(args.id)
 
     path = "images/"
 

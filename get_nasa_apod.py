@@ -23,14 +23,15 @@ def get_nasa_apod(path, api_key, count=2):
 
     for image_index, image in enumerate(images):
         try:
-            image_path = f"{path}nasa_apod_{image_index}.{get_file_extension(image)}"
+            image_path = f"{path}nasa_apod_{image_index}." \
+                         f"{get_file_extension(image)}"
 
             image_response = requests.get(image)
             image_response.raise_for_status()
 
             with open(image_path, 'wb') as file:
                 file.write(image_response.content)
-        except:
+        except requests.ConnectionError:
             print("Error with NASA image occured")
             continue
 
