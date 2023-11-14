@@ -4,6 +4,7 @@ Simple set of scripts for a telegram bot to download space images form different
 ### Environment variables
 - NASA_API_KEY
 - TELEGRAM_BOT_TOKEN
+- CHAT_ID
 
 1. Put `.env` file near `main.py`.
 2. `.env` contains text data without quotes.
