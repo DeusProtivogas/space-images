@@ -9,13 +9,13 @@ def get_file_extension(url):
     return os.path.splitext(os.path.split(url_parsed.path)[1])[1]
 
 
-def download_image(url, path):
+def download_image(url, path, params={}):
     headers = {
         'User-Agent': 'CoolBot/0.0 (https://example.org/coolbot/; '
                       'coolbot@example.org)'
     }
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, params=params)
     response.raise_for_status()
 
     path_to_images = "images/"
