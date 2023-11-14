@@ -4,6 +4,8 @@ import datetime
 import requests
 from dotenv import load_dotenv
 
+from download_image_util import download_image
+
 
 def get_nasa_epic(path, api_key, count=2):
     params = {
@@ -17,20 +19,17 @@ def get_nasa_epic(path, api_key, count=2):
     response = requests.get(url_epic, params=params)
     response.raise_for_status()
 
-    for index, item in enumerate(response.json()):
+    for index, image in enumerate(response.json()):
         if index >= int(count):
             break
-        id = item.get("identifier")
+        image_id = image.get("identifier")
         url_image = f"https://api.nasa.gov/EPIC/archive/natural" \
                     f"/{yesterday_date.strftime('%Y/%m/%d')}/" \
-                    f"png/epic_1b_{id}.png"
-
-        response_image = requests.get(url_image, params=params)
-        response_image.raise_for_status()
+                    f"png/epic_1b_{image_id}.png"
 
         image_path = f"{path}nasa_epic_{index}.png"
-        with open(image_path, 'wb') as file:
-            file.write(response_image.content)
+
+        download_image(url_image, image_path, params=params)
 
 
 if __name__ == "__main__":
