@@ -12,6 +12,7 @@ if __name__ == "__main__":
         '-p',
         '--pause', nargs='?',
         const=3600 * 4,
+        default=3600 * 4,
         type=int,
         help='Pause between images in seconds'
     )
@@ -20,7 +21,7 @@ if __name__ == "__main__":
         args.pause = 3600 * 4
 
     bot_token = os.environ["TELEGRAM_BOT_TOKEN"]
-    chat_id = "@space_images_devman"
+    chat_id = os.environ["CHAT_ID"]
 
     bot = telegram.Bot(token=bot_token)
 
@@ -29,11 +30,9 @@ if __name__ == "__main__":
     while True:
         random.shuffle(images)
         for image in images:
-            bot.send_document(
-                chat_id=chat_id,
-                document=open(
-                    f'images/{image}',
-                    'rb'
+            with open(f'images/{image}', 'rb') as document:
+                bot.send_document(
+                    chat_id=chat_id,
+                    document=document,
                 )
-            )
             time.sleep(args.pause)
