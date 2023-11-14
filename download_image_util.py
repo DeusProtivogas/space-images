@@ -9,7 +9,9 @@ def get_file_extension(url):
     return os.path.splitext(os.path.split(url_parsed.path)[1])[1]
 
 
-def download_image(url, path, params={}):
+def download_image(url, path, params=None):
+    if params is None:
+        params = {}
     headers = {
         'User-Agent': 'CoolBot/0.0 (https://example.org/coolbot/; '
                       'coolbot@example.org)'
