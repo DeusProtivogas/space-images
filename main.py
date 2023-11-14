@@ -18,7 +18,7 @@ def main():
     url = "https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg"
     download_image(url, filename)
 
-    fetch_spacex_launch(path_to_images, id="5eb87d47ffd86e000604b38a")
+    fetch_spacex_launch(path_to_images, launch_id="5eb87d47ffd86e000604b38a")
 
     get_nasa_apod(path_to_images, api_key)
 
