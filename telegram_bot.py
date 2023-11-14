@@ -17,11 +17,9 @@ if __name__ == "__main__":
         help='Pause between images in seconds'
     )
     args = parser.parse_args()
-    if not args.pause:
-        args.pause = 3600 * 4
 
     bot_token = os.environ["TELEGRAM_BOT_TOKEN"]
-    chat_id = os.environ["CHAT_ID"]
+    chat_id = os.environ["TELEGRAM_CHAT_ID"]
 
     bot = telegram.Bot(token=bot_token)
 
